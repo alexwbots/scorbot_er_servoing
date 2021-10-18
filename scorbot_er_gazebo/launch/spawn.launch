@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <!-- Launch Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find scorbot_er_gazebo)/worlds/servoing.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="recording" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+        
+  <!-- Robot model -->
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find scorbot_er_description)/urdf/scorbot_er.xacro'" />
+  <!-- Spawn the robot model -->
+  <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-urdf -param robot_description -model scorbot_er -x 0 -y 0 -z 0" />
+
+  <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find scorbot_er_description)/rviz/scorbot_er_servoing.rviz"/>
+
+</launch>

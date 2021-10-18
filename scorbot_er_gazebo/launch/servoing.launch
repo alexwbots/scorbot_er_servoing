@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+  <!-- Launch spawn and gazebo world -->
+  <include file="$(find scorbot_er_gazebo)/launch/spawn.launch"/>
+
+  <!-- Launch control, rqt_publisher, robot state publisher, joint state publisher and rviz -->
+  <include file="$(find scorbot_er_description)/launch/controllers.launch"/>
+
+</launch>

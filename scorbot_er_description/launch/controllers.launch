@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+      
+  <!-- Load joint controllers -->
+  <rosparam file="$(find scorbot_er_description)/config/trajectory_control.yaml" command="load" />
+  <!-- Joint Controllers -->
+  <node name="scorbot_er_controller_spawner" pkg="controller_manager" type="spawner"
+        respawn="false" output="screen" ns="/scorbot_er"
+        args="scorbot_er_joint_controller
+              gripper_controller"/>
+        
+  <!--node name="rqt_publisher" pkg="rqt_publisher" type="rqt_publisher" /-->
+
+  <!-- Load controllers -->
+  <rosparam file="$(find scorbot_er_description)/config/joints_states.yaml" command="load" />
+  <!-- Controllers -->
+  <node name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" 
+        output="screen" ns="/scorbot_er" args="joint_state_controller"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn ="false" output="screen" >
+    <remap from="/joint_states" to="/scorbot_er/joint_states" />
+  </node>
+
+  <rosparam file="$(find scorbot_er_description)/config/gazebo_ros_control_params.yaml" command="load"/>
+
+</launch>

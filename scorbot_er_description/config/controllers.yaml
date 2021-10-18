@@ -1,0 +1,20 @@
+controller_manager_ns: controller_manager
+controller_list:
+  - name: scorbot_er/scorbot_er_joint_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - base_link__link_01
+      - link_01__link_02
+      - link_02__link_03
+      - link_03__link_04
+      - link_04__gripper
+
+  - name: scorbot_er/gripper_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - gripper__gripper_left
+      - gripper__gripper_right

@@ -1,0 +1,27 @@
+scorbot_er:
+  scorbot_er_joint_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - base_link__link_01
+      - link_01__link_02
+      - link_02__link_03
+      - link_03__link_04
+      - link_04__gripper
+
+    gains:
+      base_link__link_01: {p: 30000, d: 900, i: 100, i_clamp: 0}
+      link_01__link_02:   {p: 24000, d: 800, i: 100, i_clamp: 0}
+      link_02__link_03:   {p: 20000, d: 700, i: 100, i_clamp: 0}
+      link_03__link_04:   {p: 18000, d: 700, i: 100, i_clamp: 0}
+      link_04__gripper:   {p: 18000, d: 500, i: 100, i_clamp: 0}
+
+
+  gripper_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - gripper__gripper_left
+      - gripper__gripper_right
+
+    gains:
+      gripper__gripper_left:  {p: 1000.0, d: 50, i: 10, i_clamp: 0.0}
+      gripper__gripper_right: {p: 1000.0, d: 50, i: 10, i_clamp: 0.0}

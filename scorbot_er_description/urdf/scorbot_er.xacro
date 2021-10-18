@@ -1,0 +1,409 @@
+<?xml version="1.0" ?>
+
+<robot name="scorbot_er" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- BEGIN - Include -->
+  <xacro:include filename="$(find scorbot_er_description)/urdf/robot_parameters.xacro" />
+  <xacro:include filename="$(find scorbot_er_description)/urdf/links_joints.xacro" />
+  <!-- END - Include -->
+
+  <!-- World frame (for Gazebo) -->
+  <link name="world"/>
+
+  <!-- Arm fixed to world frame  -->
+  <joint name="world_support" type="fixed">
+    <parent link="world"/>
+    <child link="support"/>+
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+  <m_link_mesh name="support" color="Grey"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="157.633"
+              ixx="13.235" ixy="0" ixz="0"
+              iyy="13.235" iyz="0"
+              izz="9.655"
+              meshfile="package://scorbot_er_description/meshes/support.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <material name="Blue">
+    <color rgba="0.0 0.4 0.8 1.0"/>
+  </material>
+
+  <material name="Grey">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+
+  <material name="Black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+
+  <gazebo reference="support">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <gazebo reference="${link_00_name}">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="${link_01_name}">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="${link_02_name}">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="${link_03_name}">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="${link_04_name}">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="${gripper_name}">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <gazebo reference="gripper_left">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <gazebo reference="gripper_right">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+  <!-- BEGIN - Robot description -->
+
+  <!--joint name="world_arm" type="fixed">
+    <parent link="world"/>
+    <child link="${link_00_name}"/>
+  </joint-->
+
+  <joint name="support_base_link" type="fixed">
+    <parent link="support"/>
+    <child link="${link_00_name}"/>
+    <origin rpy="0 0 0" xyz="0 0 1.0"/>
+  </joint>
+
+  <m_link_mesh name="${link_00_name}" color="Blue"
+              origin_rpy="0 0 0" origin_xyz="0.0 0.0 0.0"
+              mass="15"
+              ixx="30" ixy="0" ixz="0"
+              iyy="30" iyz="0"
+              izz="30"
+              meshfile="package://scorbot_er_description/meshes/base_link.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <m_joint name="${link_00_name}__${link_01_name}" type="revolute"
+           axis_xyz="0 0 1"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.195"
+           parent="${link_00_name}" child="${link_01_name}"
+           limit_e="1000" limit_l="-2.3562" limit_u="2.3562" limit_v="0.5" />
+
+  <m_link_mesh name="${link_01_name}" color="Blue"
+              origin_rpy="0 0 0" origin_xyz="0 0 0.0"
+              mass="15"
+              ixx="20" ixy="0" ixz="0"
+              iyy="20" iyz="0"
+              izz="20"
+              meshfile="package://scorbot_er_description/meshes/link1.stl"
+              meshscale="0.001 0.001 0.001" />
+              
+  <m_joint name="${link_01_name}__${link_02_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0.06 -0.0875 0.1675"
+           parent="${link_01_name}" child="${link_02_name}"
+           limit_e="1000" limit_l="-0.7854" limit_u="1.7453" limit_v="0.5" />
+
+  <m_link_mesh name="${link_02_name}" color="Blue"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="10"
+              ixx="10" ixy="0" ixz="0"
+              iyy="10" iyz="0"
+              izz="10"
+              meshfile="package://scorbot_er_description/meshes/link2.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <m_joint name="${link_02_name}__${link_03_name}" type="revolute"
+           axis_xyz="0 -1 0"
+           origin_rpy="0 0 0" origin_xyz="0.23 0 0.00"
+           parent="${link_02_name}" child="${link_03_name}"
+           limit_e="1000" limit_l="-1.8326" limit_u="1.8326" limit_v="0.5" />
+
+  <m_link_mesh name="${link_03_name}" color="Blue"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="7"
+              ixx="5" ixy="0" ixz="0"
+              iyy="5" iyz="0"
+              izz="5"
+              meshfile="package://scorbot_er_description/meshes/link3.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <m_joint name="${link_03_name}__${link_04_name}" type="revolute"
+           axis_xyz="0 -1 0"
+           origin_rpy="0 0 0" origin_xyz="0.23 0.04 0.0"
+           parent="${link_03_name}" child="${link_04_name}"
+           limit_e="1000" limit_l="-2.0" limit_u="2.0" limit_v="0.5" />
+
+  <m_link_mesh name="${link_04_name}" color="Black"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="2"
+              ixx="1" ixy="0" ixz="0"
+              iyy="1" iyz="0"
+              izz="1"
+              meshfile="package://scorbot_er_description/meshes/link4.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <!-- GRIPPER START HERE -->
+
+  <m_joint name="${link_04_name}__${gripper_name}" type="revolute"
+           axis_xyz="1 0 0"
+           origin_rpy="0 0 0" origin_xyz="0.11 0 0"
+           parent="${link_04_name}" child="${gripper_name}"
+           limit_e="1000" limit_l="-1.57" limit_u="1.57" limit_v="0.5" />
+
+  <m_link_mesh name="${gripper_name}" color="Black"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="1"
+              ixx="1" ixy="0" ixz="0"
+              iyy="1" iyz="0"
+              izz="1"
+              meshfile="package://scorbot_er_description/meshes/link5.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <m_joint name="${gripper_name}__gripper_left" type="prismatic"
+           axis_xyz="1 0 0"
+           origin_rpy="1.5708 0 1.5708" origin_xyz="0.04 0.00 0.000"
+           parent="${gripper_name}" child="gripper_left"
+           limit_e="1000" limit_l="-0.07" limit_u="0.00" limit_v="0.5" />
+
+  <m_link_mesh name="gripper_left" color="Grey"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="0.1"
+              ixx="1" ixy="0" ixz="0"
+              iyy="1" iyz="0"
+              izz="1"
+              meshfile="package://scorbot_er_description/meshes/gripper_left.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <m_joint name="${gripper_name}__gripper_right" type="prismatic"
+           axis_xyz="1 0 0"
+           origin_rpy="1.5708 0 1.5708" origin_xyz="0.04 0.00 0.000"
+           parent="${gripper_name}" child="gripper_right"
+           limit_e="1000" limit_l="0.00" limit_u="0.07" limit_v="0.5" />
+
+  <m_link_mesh name="gripper_right" color="Grey"
+              origin_rpy="0 0 0" origin_xyz="0 0 0"
+              mass="0.1"
+              ixx="1" ixy="0" ixz="0"
+              iyy="1" iyz="0"
+              izz="1"
+              meshfile="package://scorbot_er_description/meshes/gripper_right.stl"
+              meshscale="0.001 0.001 0.001" />
+
+  <!-- GRIPPER END HERE -->
+
+  <!-- END - Robot description -->
+  
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <robotNamespace>/scorbot_er</robotNamespace>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+  
+  <gazebo reference="gripper_right">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="gripper_left">
+    <mu1>0.5</mu1>
+    <mu2>0.5</mu2>
+    <kp>500000.0</kp>
+    <kd>10.0</kd>
+    <minDepth>0.001</minDepth>
+    <maxVel>0.1</maxVel>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
+  <!-- BEGIN - DEPTH-RGB Camera -->
+
+  <joint name="openni_camera_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 ${camera_y} ${camera_z}" rpy="0 ${camera_pitch} ${camera_yaw}"/>
+    <parent link="world"/>
+    <child link="${camera_name}"/>
+  </joint>
+
+  <link name="${camera_name}">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.05 0.1 0.05"/></geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.05 0.1 0.05"/></geometry>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" /><origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <joint name="camera_optical_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="-1.5708 0.0 -1.5708" />
+      <parent link="${camera_name}" />
+      <child link="camera_optical_frame" />
+  </joint>
+  
+  <link name="camera_optical_frame" />
+
+  <gazebo reference="${camera_name}">
+    <sensor type="depth" name="realsense_R200">
+      <always_on>true</always_on>
+      <visualize>false</visualize>             
+      <camera>
+        <horizontal_fov>1.3439</horizontal_fov>  
+        <image>
+          <width>640</width>
+          <height>480</height>
+          <format>R8G8B8</format>
+        </image>
+        <depth_camera></depth_camera>
+        <clip>
+          <near>0.03</near>
+          <far>100</far>
+        </clip>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>10.0</updateRate>
+        <cameraName>camera</cameraName>
+        <frameName>camera_optical_frame</frameName>                   
+        <imageTopicName>rgb/image_raw</imageTopicName>
+        <depthImageTopicName>depth/image_raw</depthImageTopicName>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+        <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>              
+        <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>            
+        <pointCloudCutoff>0.4</pointCloudCutoff>                
+          <hackBaseline>0.07</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        <CxPrime>0.0</CxPrime>
+        <Cx>0.0</Cx>
+        <Cy>0.0</Cy>
+        <focalLength>0.0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <!-- END - DEPTH-RGB Camera -->
+
+  <!-- BEGIN - RGB Camera -->
+
+  <joint name="camera_joint" type="fixed">
+    <axis xyz="0 1 0" />
+    <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    <parent link="${gripper_name}"/>
+    <child link="camera_link"/>
+  </joint>
+
+  <link name="camera_link">
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.03 0.06 0.03"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.03 0.06 0.03"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <inertial>
+      <mass value="1e-5" />
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+    </inertial>
+  </link>
+
+  <joint name="camera_rgb_joint" type="fixed">
+    <origin xyz="0.003 0.011 0.009" rpy="0 0 0"/>
+    <parent link="camera_link"/>
+    <child link="camera_rgb_frame"/>
+  </joint>
+  <link name="camera_rgb_frame"/>
+
+  <joint name="camera_rgb_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/>
+    <parent link="camera_rgb_frame"/>
+    <child link="camera_rgb_optical_frame"/>
+  </joint>
+  <link name="camera_rgb_optical_frame"/>
+
+  <gazebo reference="camera_link">
+    <sensor type="camera" name="gripper_camera">
+      <update_rate>30.0</update_rate>
+      <camera name="gripper">
+        <horizontal_fov>1.3962634</horizontal_fov>
+        <image>
+          <width>800</width>
+          <height>800</height>
+          <format>R8G8B8</format>
+        </image>
+        <clip>
+          <near>0.02</near>
+          <far>300</far>
+        </clip>
+        <noise>
+          <type>gaussian</type>
+          <!-- Noise is sampled independently per pixel on each frame. That pixel's noise value is added to each of its color channels, which at that point lie in the range [0,1]. -->
+          <mean>0.0</mean>
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30.0</updateRate>
+        <cameraName>gripper_camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_rgb_optical_frame</frameName>
+        <hackBaseline>0.07</hackBaseline>
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <gazebo reference="camera_link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <!-- END - RGB Camera -->
+
+</robot>

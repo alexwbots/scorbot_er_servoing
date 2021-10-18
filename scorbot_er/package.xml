@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>scorbot_er</name>
+  <version>1.0.0</version>
+  <description>ROS packages for the scorbot_er arm using just motors (meta package)</description>
+
+  <maintainer email="lopez.alexander@pucp.edu">Alexander Lopez</maintainer>
+  <license>BSD</license>
+  <author email="lopez.alexander@pucp.edu">Alexander Lopez</author> -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>scorbot_er_moveit_config</exec_depend>
+  <exec_depend>scorbot_er_description</exec_depend>
+  <export><metapackage/></export>
+
+</package>

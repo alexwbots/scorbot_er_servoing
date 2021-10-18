@@ -1,0 +1,8 @@
+scorbot_er/gazebo_ros_control/pid_gains:
+  base_link__link_01: {p: 30000.0, i: 100.0, d: 900.0}
+  link_01__link_02: {p: 24000.0, i: 100.0, d: 800.0}
+  link_02__link_03: {p: 20000.0, i: 100.0, d: 700.0}
+  link_03__link_04: {p: 18000.0, i: 100.0, d: 700.0}
+  link_04__gripper: {p: 18000.0, i: 100.0, d: 700.0}
+  gripper__gripper_left: {p: 1000.0, d: 50, i: 10}
+  gripper__gripper_right: {p: 1000.0, d: 50, i: 10}
