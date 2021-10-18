@@ -3,7 +3,7 @@
 ```
 cd
 cd .gazebo/models/
-cp -r /home/user/catkin_ws/src/scorbot_er/marker4 .
+cp -r /home/user/catkin_ws/src/scorbot_er/marker0 .
 ```
 safdaf
 
