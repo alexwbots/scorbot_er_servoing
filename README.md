@@ -5,7 +5,7 @@ This package contain the implementation of the visual servoing for the Scorbot-E
 ```
 cd
 cd .gazebo/models/
-cp -r /home/user/catkin_ws/src/scorbot_er/marker0 .
+cp -r /home/user/catkin_ws/src/scorbot_er_servoing/marker0 .
 ```
 
 
