@@ -15,7 +15,7 @@
     <include>
       <uri>model://marker0</uri>
       <name>marker0</name>
-      <pose>0.5 0.0 1.04 0 1.5708 0</pose>
+      <pose>0.5 0.0 1.045 0 1.5708 0</pose>
     </include>
   </world>
 </sdf>
