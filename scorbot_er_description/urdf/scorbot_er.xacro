@@ -17,14 +17,13 @@
     <origin rpy="0 0 0" xyz="0 0 0"/>
   </joint>
 
-  <m_link_mesh name="support" color="Grey"
-              origin_rpy="0 0 0" origin_xyz="0 0 0"
-              mass="157.633"
-              ixx="13.235" ixy="0" ixz="0"
-              iyy="13.235" iyz="0"
-              izz="9.655"
-              meshfile="package://scorbot_er_description/meshes/support.stl"
-              meshscale="0.001 0.001 0.001" />
+  <xacro:m_link_mesh name="support" color="Grey"
+                     origin_rpy="0 0 0" origin_xyz="0 0 0"
+                     mass="157.633"
+                     ixx="13.235" ixy="0" ixz="0"
+                     iyy="13.235" iyz="0" izz="9.655"
+                     meshfile="package://scorbot_er_description/meshes/support.stl"
+                     meshscale="0.001 0.001 0.001" />
 
   <material name="Blue">
     <color rgba="0.0 0.4 0.8 1.0"/>
@@ -76,132 +75,119 @@
 
   <!-- BEGIN - Robot description -->
 
-  <!--joint name="world_arm" type="fixed">
-    <parent link="world"/>
-    <child link="${link_00_name}"/>
-  </joint-->
-
   <joint name="support_base_link" type="fixed">
     <parent link="support"/>
     <child link="${link_00_name}"/>
     <origin rpy="0 0 0" xyz="0 0 1.0"/>
   </joint>
 
-  <m_link_mesh name="${link_00_name}" color="Blue"
-              origin_rpy="0 0 0" origin_xyz="0.0 0.0 0.0"
-              mass="15"
-              ixx="30" ixy="0" ixz="0"
-              iyy="30" iyz="0"
-              izz="30"
-              meshfile="package://scorbot_er_description/meshes/base_link.stl"
-              meshscale="0.001 0.001 0.001" />
+  <xacro:m_link_mesh name="${link_00_name}" color="Blue"
+                     origin_rpy="0 0 0" origin_xyz="0.0 0.0 0.0"
+                     mass="15"
+                     ixx="30" ixy="0" ixz="0"
+                     iyy="30" iyz="0" izz="30"
+                     meshfile="package://scorbot_er_description/meshes/base_link.stl"
+                     meshscale="0.001 0.001 0.001" />
 
-  <m_joint name="${link_00_name}__${link_01_name}" type="revolute"
-           axis_xyz="0 0 1"
-           origin_rpy="0 0 0" origin_xyz="0 0 0.195"
-           parent="${link_00_name}" child="${link_01_name}"
-           limit_e="1000" limit_l="-2.3562" limit_u="2.3562" limit_v="0.5" />
+  <xacro:m_joint name="${link_00_name}__${link_01_name}" type="revolute"
+                 axis_xyz="0 0 1"
+                 origin_rpy="0 0 0" origin_xyz="0 0 0.195"
+                 parent="${link_00_name}" child="${link_01_name}"
+                 limit_e="1000" limit_l="-2.3562" limit_u="2.3562" limit_v="0.5" />
 
-  <m_link_mesh name="${link_01_name}" color="Blue"
-              origin_rpy="0 0 0" origin_xyz="0 0 0.0"
-              mass="15"
-              ixx="20" ixy="0" ixz="0"
-              iyy="20" iyz="0"
-              izz="20"
-              meshfile="package://scorbot_er_description/meshes/link1.stl"
-              meshscale="0.001 0.001 0.001" />
+  <xacro:m_link_mesh name="${link_01_name}" color="Blue" 
+                     origin_rpy="0 0 0" origin_xyz="0 0 0.0"
+                     mass="15"
+                     ixx="20" ixy="0" ixz="0"
+                     iyy="20" iyz="0" izz="20"
+                     meshfile="package://scorbot_er_description/meshes/link1.stl"
+                     meshscale="0.001 0.001 0.001" />
               
-  <m_joint name="${link_01_name}__${link_02_name}" type="revolute"
-           axis_xyz="0 1 0"
-           origin_rpy="0 0 0" origin_xyz="0.06 -0.0875 0.1675"
-           parent="${link_01_name}" child="${link_02_name}"
-           limit_e="1000" limit_l="-0.7854" limit_u="1.7453" limit_v="0.5" />
+  <xacro:m_joint name="${link_01_name}__${link_02_name}" type="revolute"
+                 axis_xyz="0 1 0"
+                 origin_rpy="0 0 0" origin_xyz="0.06 -0.0875 0.1675"
+                 parent="${link_01_name}" child="${link_02_name}"
+                 limit_e="1000" limit_l="-0.7854" limit_u="1.7453" limit_v="0.5" />
 
-  <m_link_mesh name="${link_02_name}" color="Blue"
-              origin_rpy="0 0 0" origin_xyz="0 0 0"
-              mass="10"
-              ixx="10" ixy="0" ixz="0"
-              iyy="10" iyz="0"
-              izz="10"
+  <xacro:m_link_mesh name="${link_02_name}" color="Blue"
+                     origin_rpy="0 0 0" origin_xyz="0 0 0"
+                     mass="10"
+                     ixx="10" ixy="0" ixz="0"
+                     iyy="10" iyz="0" izz="10"
               meshfile="package://scorbot_er_description/meshes/link2.stl"
               meshscale="0.001 0.001 0.001" />
 
-  <m_joint name="${link_02_name}__${link_03_name}" type="revolute"
-           axis_xyz="0 -1 0"
-           origin_rpy="0 0 0" origin_xyz="0.23 0 0.00"
-           parent="${link_02_name}" child="${link_03_name}"
-           limit_e="1000" limit_l="-1.8326" limit_u="1.8326" limit_v="0.5" />
+  <xacro:m_joint name="${link_02_name}__${link_03_name}" type="revolute"
+                 axis_xyz="0 -1 0"
+                 origin_rpy="0 0 0" origin_xyz="0.23 0 0.00"
+                 parent="${link_02_name}" child="${link_03_name}"
+                 limit_e="1000" limit_l="-1.8326" limit_u="1.8326" limit_v="0.5" />
 
-  <m_link_mesh name="${link_03_name}" color="Blue"
-              origin_rpy="0 0 0" origin_xyz="0 0 0"
-              mass="7"
-              ixx="5" ixy="0" ixz="0"
-              iyy="5" iyz="0"
-              izz="5"
-              meshfile="package://scorbot_er_description/meshes/link3.stl"
-              meshscale="0.001 0.001 0.001" />
+  <xacro:m_link_mesh name="${link_03_name}" color="Blue"
+                     origin_rpy="0 0 0" origin_xyz="0 0 0"
+                     mass="7"
+                     ixx="5" ixy="0" ixz="0"
+                     iyy="5" iyz="0" izz="5"
+                     meshfile="package://scorbot_er_description/meshes/link3.stl"
+                     meshscale="0.001 0.001 0.001" />
 
-  <m_joint name="${link_03_name}__${link_04_name}" type="revolute"
-           axis_xyz="0 -1 0"
-           origin_rpy="0 0 0" origin_xyz="0.23 0.04 0.0"
-           parent="${link_03_name}" child="${link_04_name}"
-           limit_e="1000" limit_l="-2.0" limit_u="2.0" limit_v="0.5" />
+  <xacro:m_joint name="${link_03_name}__${link_04_name}" type="revolute"
+                 axis_xyz="0 -1 0"
+                 origin_rpy="0 0 0" origin_xyz="0.23 0.04 0.0"
+                 parent="${link_03_name}" child="${link_04_name}"
+                 limit_e="1000" limit_l="-2.0" limit_u="2.0" limit_v="0.5" />
 
-  <m_link_mesh name="${link_04_name}" color="Black"
-              origin_rpy="0 0 0" origin_xyz="0 0 0"
-              mass="2"
-              ixx="1" ixy="0" ixz="0"
-              iyy="1" iyz="0"
-              izz="1"
-              meshfile="package://scorbot_er_description/meshes/link4.stl"
-              meshscale="0.001 0.001 0.001" />
+  <xacro:m_link_mesh name="${link_04_name}" color="Black"
+                     origin_rpy="0 0 0" origin_xyz="0 0 0"
+                     mass="2"
+                     ixx="1" ixy="0" ixz="0"
+                     iyy="1" iyz="0" izz="1"
+                     meshfile="package://scorbot_er_description/meshes/link4.stl"
+                     meshscale="0.001 0.001 0.001" />
 
   <!-- GRIPPER START HERE -->
 
-  <m_joint name="${link_04_name}__${gripper_name}" type="revolute"
-           axis_xyz="1 0 0"
-           origin_rpy="0 0 0" origin_xyz="0.11 0 0"
-           parent="${link_04_name}" child="${gripper_name}"
-           limit_e="1000" limit_l="-1.57" limit_u="1.57" limit_v="0.5" />
+  <xacro:m_joint name="${link_04_name}__${gripper_name}" type="revolute"
+                 axis_xyz="1 0 0"
+                 origin_rpy="0 0 0" origin_xyz="0.11 0 0"
+                 parent="${link_04_name}" child="${gripper_name}"
+                 limit_e="1000" limit_l="-1.57" limit_u="1.57" limit_v="0.5" />
 
-  <m_link_mesh name="${gripper_name}" color="Black"
-              origin_rpy="0 0 0" origin_xyz="0 0 0"
-              mass="1"
-              ixx="1" ixy="0" ixz="0"
-              iyy="1" iyz="0"
-              izz="1"
-              meshfile="package://scorbot_er_description/meshes/link5.stl"
-              meshscale="0.001 0.001 0.001" />
+  <xacro:m_link_mesh name="${gripper_name}" color="Black"
+                     origin_rpy="0 0 0" origin_xyz="0 0 0"
+                     mass="1"
+                     ixx="1" ixy="0" ixz="0"
+                     iyy="1" iyz="0" izz="1"
+                     meshfile="package://scorbot_er_description/meshes/link5.stl"
+                     meshscale="0.001 0.001 0.001" />
 
-  <m_joint name="${gripper_name}__gripper_left" type="prismatic"
-           axis_xyz="1 0 0"
-           origin_rpy="1.5708 0 1.5708" origin_xyz="0.04 0.00 0.000"
-           parent="${gripper_name}" child="gripper_left"
-           limit_e="1000" limit_l="-0.07" limit_u="0.00" limit_v="0.5" />
+  <xacro:m_joint name="${gripper_name}__gripper_left" type="prismatic"
+                 axis_xyz="1 0 0"
+                 origin_rpy="1.5708 0 1.5708" origin_xyz="0.04 0.00 0.000"
+                 parent="${gripper_name}" child="gripper_left"
+                 limit_e="1000" limit_l="-0.07" limit_u="0.00" limit_v="0.5" />
 
-  <m_link_mesh name="gripper_left" color="Grey"
-              origin_rpy="0 0 0" origin_xyz="0 0 0"
-              mass="0.1"
-              ixx="1" ixy="0" ixz="0"
-              iyy="1" iyz="0"
-              izz="1"
-              meshfile="package://scorbot_er_description/meshes/gripper_left.stl"
-              meshscale="0.001 0.001 0.001" />
+  <xacro:m_link_mesh name="gripper_left" color="Grey"
+                     origin_rpy="0 0 0" origin_xyz="0 0 0"
+                     mass="0.1"
+                     ixx="1" ixy="0" ixz="0"
+                     iyy="1" iyz="0" izz="1"
+                     meshfile="package://scorbot_er_description/meshes/gripper_left.stl"
+                     meshscale="0.001 0.001 0.001" />
 
-  <m_joint name="${gripper_name}__gripper_right" type="prismatic"
-           axis_xyz="1 0 0"
-           origin_rpy="1.5708 0 1.5708" origin_xyz="0.04 0.00 0.000"
-           parent="${gripper_name}" child="gripper_right"
-           limit_e="1000" limit_l="0.00" limit_u="0.07" limit_v="0.5" />
+  <xacro:m_joint name="${gripper_name}__gripper_right" type="prismatic"
+                 axis_xyz="1 0 0"
+                 origin_rpy="1.5708 0 1.5708" origin_xyz="0.04 0.00 0.000"
+                 parent="${gripper_name}" child="gripper_right"
+                 limit_e="1000" limit_l="0.00" limit_u="0.07" limit_v="0.5" />
 
-  <m_link_mesh name="gripper_right" color="Grey"
-              origin_rpy="0 0 0" origin_xyz="0 0 0"
-              mass="0.1"
-              ixx="1" ixy="0" ixz="0"
-              iyy="1" iyz="0"
-              izz="1"
-              meshfile="package://scorbot_er_description/meshes/gripper_right.stl"
-              meshscale="0.001 0.001 0.001" />
+  <xacro:m_link_mesh name="gripper_right" color="Grey"
+                     origin_rpy="0 0 0" origin_xyz="0 0 0"
+                     mass="0.1"
+                     ixx="1" ixy="0" ixz="0"
+                     iyy="1" iyz="0" izz="1"
+                     meshfile="package://scorbot_er_description/meshes/gripper_right.stl"
+                     meshscale="0.001 0.001 0.001" />
 
   <!-- GRIPPER END HERE -->
 
