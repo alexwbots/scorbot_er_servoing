@@ -114,8 +114,8 @@
                      mass="10"
                      ixx="10" ixy="0" ixz="0"
                      iyy="10" iyz="0" izz="10"
-              meshfile="package://scorbot_er_description/meshes/link2.stl"
-              meshscale="0.001 0.001 0.001" />
+                     meshfile="package://scorbot_er_description/meshes/link2.stl"
+                     meshscale="0.001 0.001 0.001" />
 
   <xacro:m_joint name="${link_02_name}__${link_03_name}" type="revolute"
                  axis_xyz="0 -1 0"
