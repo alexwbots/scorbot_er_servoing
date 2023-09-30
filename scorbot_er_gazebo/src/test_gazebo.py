@@ -13,9 +13,9 @@ if __name__ == '__main__':
 
     robot_client = actionlib.SimpleActionClient('/scorbot_er/scorbot_er_joint_controller/follow_joint_trajectory', FollowJointTrajectoryAction)
 
-    print "Waiting for server..."
+    print("Waiting for server...")
     robot_client.wait_for_server()
-    print "Connected to server"
+    print("Connected to server")
 
     joint_names = ['base_link__link_01', 'link_01__link_02', 'link_02__link_03', 'link_03__link_04', 'link_04__gripper']
     Q0 = [0.0, -1.0, -0.72, -1.5708, 0]
